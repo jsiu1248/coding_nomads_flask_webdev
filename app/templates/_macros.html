@@ -1,0 +1,33 @@
+{# Remember macros are like a function #}
+{% macro pagination_widget(pagination, endpoint, fragment='') %}
+<ul class="pagination">
+    {# if pagination has 2 or more pages, show page buttons #}
+    {% if pagination.pages >= 2 %}
+        {% if pagination.pages > 5 %}
+        <li{% if not pagination.has_prev %} class="disabled"{% endif %}>
+            <a href="{% if pagination.has_prev %}{{ url_for(endpoint,
+                page = 1, **kwargs) }}{{ fragment }}{% else %}#{% endif %}">
+                &laquo;
+            </a>
+        </li>
+        {% endif %}
+        {% for p in pagination.iter_pages() %}
+            {% if p %}
+                <li{% if p == pagination.page %} class="active"{% endif %}>
+                    <a href="{{ url_for(endpoint, page=p, **kwargs) }}{{ fragment }}">{{ p }}</a>
+                </li>
+            {% else %}
+            <li class="disabled"><a href="#">&hellip;</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if pagination.pages > 5 %}
+        <li{% if not pagination.has_next %} class="disabled"{% endif %}>
+            <a href="{% if pagination.has_next %}{{ url_for(endpoint,
+                page = pagination.pages, **kwargs) }}{{ fragment }}{% else %}#{% endif %}">
+                &raquo;
+            </a>
+        </li>
+        {% endif %}
+    {% endif %}
+</ul>
+{% endmacro %}

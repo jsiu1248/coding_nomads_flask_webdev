@@ -1,0 +1,5 @@
+Hey {{ user.username }}, welcome to Ragtime!
+
+Ragtime is a THE place to be to discover what new albums and singles your favorite artists are releasing!
+
+Not only that, but you can see what your friends think about their own favorite artists' compositions (and hopefully they don't trash yours TOO harshly ;).

@@ -1,0 +1,14 @@
+<h3>Hey, {{ user.username }}.</h3>
+
+<p>
+Welcome to Ragtime! To confirm your account please click the link below:
+</p>
+
+<a href={{ url_for('auth.confirm', token=token, _external=True) }}>Link to Confirm</a>
+
+<p>
+Yours Tunely,<br>
+The Ragtime Team
+</p>
+
+*Please do not reply to this email.

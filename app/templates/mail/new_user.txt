@@ -1,0 +1,1 @@
+A new user named {{ user.username }} signed up, their email is {{ user.email }}.

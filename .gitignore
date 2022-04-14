@@ -1,0 +1,7 @@
+env/
+__pycache__
+email.sh
+data*.sqlite
+__pycache__
+.vscode/.ropeproject/config.py
+.env

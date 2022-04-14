@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Ragtime - Composition{% endblock %}
+
+{% block page_content %}
+{% include '_compositions.html' %}
+<h4 id="comments">Comments</h4>
+{% if current_user.can(Permission.COMMENT) %}
+<div class="comment-form">
+    {{ wtf.quick_form(form) }}
+</div>
+{% endif %}
+{% include '_comments.html' %}
+{% if pagination %}
+    {# get the only composition in this page and display its comments #}
+    {{ macros.pagination_widget(pagination, '.composition', fragment='#comments', slug=compositions[0].slug ) }}
+{% endif %}
+{% endblock  %}

@@ -1,0 +1,10 @@
+Hey, {{ user.username }}.
+
+Welcome to Ragtime! To confirm your account please click the link below:
+
+{{ url_for('auth.confirm', token=token, _external=True) }}
+
+Yours Tunely,
+The Ragtime Team
+
+*Please do not reply to this email.

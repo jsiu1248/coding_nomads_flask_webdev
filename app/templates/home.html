@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+{# How the page LOOKS #}
+
+{% block title %}Ragtime{% endblock %}
+
+{% block page_content %}
+<h1>Welcome to Ragtime,
+    {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Anonymous{% endif %}!
+</h1>
+<div class="page-header">
+    <p>Enjoy your stay.</p>
+</div>
+<div>
+    {% if current_user.can(Permission.PUBLISH) %}
+    {{ wtf.quick_form(form) }}
+    {% endif %}
+</div>
+
+<div class="composition-tabs">
+    {# NOTE: Done by students #}
+    <ul class="nav nav-tabs">
+        <li{% if not show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_all') }}">All</a></li>
+        {% if current_user.is_authenticated %}
+        <li{% if show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_followed') }}">Followers</a></li>
+        {% endif %}
+    </ul>
+    {% include '_compositions.html' %}
+</div>
+
+
+
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.home') }}
+</div>
+{% endif %}
+
+{% endblock page_content %}
+
